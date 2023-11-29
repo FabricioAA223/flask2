@@ -68,9 +68,13 @@ def index():
 
 @app.route('/get_images/<int:interval>/<int:duration>', methods=['GET'])
 def get_images(interval, duration):
-    images = capture_images(interval, duration)
-    upload_to_drive(images)
-    return jsonify({'images': images})
+    try:
+        images = capture_images(interval, duration)
+        upload_to_drive(images)
+        return jsonify({'images': images})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0')
