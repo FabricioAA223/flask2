@@ -64,7 +64,13 @@ def upload_to_drive(images):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    try:
+        images = capture_images(1, 3)
+        #upload_to_drive(images)
+        return jsonify({'images': images})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    #return render_template('index.html')
 
 @app.route('/get_images/<int:interval>/<int:duration>', methods=['GET'])
 def get_images(interval, duration):
