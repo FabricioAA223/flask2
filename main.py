@@ -70,7 +70,7 @@ def index():
 def get_images(interval, duration):
     try:
         images = capture_images(interval, duration)
-        upload_to_drive(images)
+        #upload_to_drive(images)
         return jsonify({'images': images})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
