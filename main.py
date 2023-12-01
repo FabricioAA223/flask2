@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 # Función para capturar imágenes de la cámara
 def generate_frames():
-    camera = cv2.VideoCapture('rtsp://192.168.1.44:554/11')  # Reemplaza con la dirección RTSP de tu cámara
+    camera = cv2.VideoCapture('rtsp://192.168.0.100:554/11')  # Reemplaza con la dirección RTSP de tu cámara
 
     while True:
         success, frame = camera.read()
@@ -22,7 +22,7 @@ def generate_frames():
 # Ruta principal para renderizar la plantilla HTML
 @app.route('/')
 def index():
-    return render_template('index2.html')
+    return render_template('index.html')
 
 # Ruta para la transmisión de imágenes desde la cámara
 @app.route('/video_feed')
